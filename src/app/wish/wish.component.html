@@ -1,0 +1,27 @@
+<div class="wish">
+  <h1>ngWishlist</h1>
+  <div class="mb-5">
+    <p>Add new category</p>
+    <form>
+      <div class="row">
+        <div class="col">
+          <input class="form-control"
+            [(ngModel)]="form.name"
+            name="name"
+            required
+            placeholder="Enter name"
+            #name="ngModel">
+        </div>
+        <div class="col-1 text-right">
+          <button [disabled]="name.invalid" class="btn btn-primary btn-sm" (click)="onSubmit(event)">
+            <fa-icon [icon]="faPlus"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <app-list *ngFor="let list of listsStore()"
+     [id]="list.id"
+     [name]="list.name"
+     [done]="list.done"></app-list>
+</div>

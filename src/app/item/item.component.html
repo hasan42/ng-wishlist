@@ -1,0 +1,33 @@
+<div class="item list-group-item">
+  <div class="row">
+    <div class="col-1">
+      <button class="btn btn-success btn-sm" [class.btn-success]="done === '1'" [class.btn-warning]="done === '0'" (click)="toggleDone(id)">
+        <fa-icon *ngIf="done === '1'" [icon]="faCheckCircle"></fa-icon>
+        <fa-icon *ngIf="done === '0'" [icon]="faCircle"></fa-icon>
+      </button>
+    </div>
+    <div class="col">
+      <div *ngIf="link; else unlink">
+        <a href="link" target="_blank">
+          {{name}}
+        </a>
+      </div>
+      <ng-template #unlink>
+        <div>
+          {{name}}
+        </div>
+      </ng-template>
+    </div>
+    <div class="col-2">
+      {{price}}
+    </div>
+    <div class="col-1 text-right">
+      <button class="btn btn-danger btn-sm" (click)="delIt(id)"><fa-icon [icon]="faTimes"></fa-icon></button>
+    </div>
+  </div>
+  <div class="row" *ngIf=description>
+    <div class="col">
+      {{description}}
+    </div>
+  </div>
+</div>

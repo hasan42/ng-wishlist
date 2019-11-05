@@ -1,0 +1,82 @@
+<div class="list mb-5">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-1">
+          <button class="btn btn-success btn-sm" [class.btn-success]="done === '1'" [class.btn-warning]="done === '0'" (click)="toggleDone(id)">
+            <fa-icon *ngIf="done === '1'" [icon]="faCheckCircle"></fa-icon>
+            <fa-icon *ngIf="done === '0'" [icon]="faCircle"></fa-icon>
+          </button>
+        </div>
+        <div class="col">
+          {{name}}
+        </div>
+        <div class="col-2">
+          {{showMinPrice(id)}} - {{showMaxPrice(id)}}
+        </div>
+        <div class="col-1 text-right">
+          <button class="btn btn-danger btn-sm" (click)="delIt(id)"><fa-icon [icon]="faTimes"></fa-icon></button>
+        </div>
+      </div>
+    </div>
+
+  <div [ngClass]="{deactive : done === '1'}">
+  
+    <div class="list-group list-group-flush">
+      <app-item *ngFor="let item of itemsStore()"
+           [id]="item.id"
+           [name]="item.name"
+           [link]="item.link"
+           [description]="item.description"
+           [price]="item.price"
+           [done]="item.done"></app-item>
+      <div class="list-group-item mt-3">
+        <button (click)="showCollpase()" class="btn btn-primary btn-sm">Add new item</button>
+        <div *ngIf="collapseActive">
+          <form>
+            <div class="mt-2 row">
+              <div class="col-3">
+                <input class="form-control form-control-sm"
+                    [(ngModel)]="form.name"
+                    name="name"
+                    required
+                    placeholder="Enter name"
+                    #name="ngModel">
+              </div>
+              <div class="col-3">
+                <input class="form-control form-control-sm"
+                    [(ngModel)]="form.link"
+                    name="link"
+                    placeholder="Enter link"
+                    #link="ngModel">
+              </div>
+              <div class="col-3">
+                <input class="form-control form-control-sm"
+                    [(ngModel)]="form.description"
+                    name="description"
+                    placeholder="Enter description"
+                    #description="ngModel">
+              </div>
+              <div class="col-2">
+                <input class="form-control form-control-sm"
+                    type="number"
+                    [(ngModel)]="form.price"
+                    name="price"
+                    required
+                    placeholder="Enter price"
+                    #price="ngModel">
+              </div>
+              <div class="col-1 text-right">
+                <button [disabled]="name.invalid || price.invalid" type="submit" (click)="onSubmit()" class="btn btn-primary btn-sm">
+                  <fa-icon [icon]="faPlus"></fa-icon>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+</div>
