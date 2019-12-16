@@ -8,7 +8,7 @@
     </div>
     <div class="col">
       <div *ngIf="link; else unlink">
-        <a href="link" target="_blank">
+        <a [href]="link" target="_blank">
           {{name}}
         </a>
       </div>
